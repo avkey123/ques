@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF Analysis Result</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='result.css') }}">
+
+</head>
+<body>
+    <nav>
+        <div class="logo">
+            <i class="fa-solid fa-user-tie"></i>
+            <p>Question Paper Analysis</p>
+        </div>
+        <ul>
+            <li><a href="{{ url_for('welcome_page') }}">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Services</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+    </nav>
+    <div class="container">
+        <h2>PDF Analysis Result</h2>
+        
+        <!-- Summary Section -->
+        <h3>Summary</h3>
+        <p>Number of Pages: {{ result.num_pages }}</p>
+        <p>Total Questions: {{ result.total_questions }}</p>
+        
+        <!-- Most Common Questions -->
+        <h3>Most Common Questions</h3>
+        <ul>
+            {% for question, count in result.most_common_questions %}
+                <li>{{ question }} (Repeated {{ count }} times)</li>
+            {% endfor %}
+        </ul>
+        
+        <!-- Topics -->
+        <h3>Most Common Topics</h3>
+        <ul>
+            {% for topic, count in result.most_common_topics %}
+                <li>{{ topic }} (Repeated {{ count }} times)</li>
+            {% endfor %}
+        </ul>
+        
+        <!-- Question Types -->
+        <h3>Question Types</h3>
+        <ul>
+            <li>Describe:
+                <ul>
+                    {% for question in result.question_types.describe %}
+                        <li>{{ question }}</li>
+                    {% endfor %}
+                </ul>
+            </li>
+            <li>Merit and Demerit:
+                <ul>
+                    {% for question in result.question_types['merit and demerit'] %}
+                        <li>{{ question }}</li>
+                    {% endfor %}
+                </ul>
+            </li>
+            <li>Properties:
+                <ul>
+                    {% for question in result.question_types.properties %}
+                        <li>{{ question }}</li>
+                    {% endfor %}
+                </ul>
+            </li>
+        </ul>
+
+        <a href="{{ url_for('upload_page') }}"><button>Upload Another PDF</button></a>
+    </div>
+</body>
+</html>

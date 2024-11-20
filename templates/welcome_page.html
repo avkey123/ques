@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Question Paper Analysis</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <nav>
+        <div class="logo">
+            <i class="fa-solid fa-user-tie"></i>
+            <p>Question Paper Analysis</p>
+        </div>
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Services</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+    </nav>
+    <div class="form-container">
+        <form action="{{ url_for('upload_page') }}" method="get">
+            <h2>Basic Details</h2>
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+            <label for="school">College/School Name:</label>
+            <input type="text" id="school" name="school" required>
+            <label for="subject">Subject Name:</label>
+            <input type="text" id="subject" name="subject" required>
+            <label for="class">Class/Year:</label>
+            <input type="text" id="class" name="class" required>
+            <button type="submit">Next</button>
+        </form>
+    </div>
+</body>
+</html>
